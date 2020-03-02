@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:30:44 by cdapurif          #+#    #+#             */
-/*   Updated: 2019/11/07 19:26:41 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/03/02 10:37:13 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# define BUFFER_SIZE 1
 
 int		get_next_line(int fd, char **line);
 int		ft_strlen(char *str);
