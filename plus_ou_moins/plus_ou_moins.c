@@ -6,7 +6,7 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:01:42 by cdapurif          #+#    #+#             */
-/*   Updated: 2020/02/29 19:55:36 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/03/02 10:33:39 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,29 @@ int		ft_get_input(void)
 	return (ft_atoi(input));
 }
 
-void	ft_loop(int myst_nbr)
+int		ft_replay(void)
+{
+	char	*input;
+
+	while (1)
+	{
+		get_next_line(0, &input);
+		if (input[0] == 'o' && input[1] == '\0')
+		{
+			ft_putstr("\nEt c'est repartit !\n\n");
+			return (1);
+		}
+		if (input[0] == 'n' && input[1] == '\0')
+		{
+			ft_putstr("\nMerci d'avoir joue, a bientot !\n");
+			return (0);
+		}
+		else
+			ft_putstr("Vous devez rentrer les lettres o ou n uniquement\n");
+	}
+}
+
+int		ft_loop(int myst_nbr)
 {
 	int		input;
 
@@ -146,9 +168,12 @@ void	ft_loop(int myst_nbr)
 		ft_putstr("\n\nQuel est le nombre ? ");
 	}
 	ft_putstr("Bravo, vous avez trouve le nombre mystere !!!\n\n");
+	ft_putstr("Voulez-vous refaire une partie ?\n(Pour modifier min et max"
+			" vous devez relancer le jeu :/) o/n : ");
+	return (ft_replay());
 }
 
-void	ft_pom(long min, long max)
+int		ft_pom(long min, long max)
 {
 	int		myst_nbr;
 	if (ft_error(min, max))
@@ -161,16 +186,20 @@ void	ft_pom(long min, long max)
 	ft_putstr(" inclus !\n\n\n");
 	srand(time(NULL));
 	myst_nbr = (rand() % (max - min + 1)) + min;
-	ft_loop(myst_nbr);
+	return (ft_loop(myst_nbr));
 }
 
 int		main(int ac, char **av)
 {
+	int		replay;
+
+	replay = 1;
 	if (ac != 3)
 	{
 		ft_putstr("Vous devez donner en argument les nombres min et max\n");
 		return (1);
 	}
-	ft_pom(ft_atoi(av[1]), ft_atoi(av[2]));
+	while (replay)
+		replay = ft_pom(ft_atoi(av[1]), ft_atoi(av[2]));
 	return (0);
 }
