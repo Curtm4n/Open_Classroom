@@ -6,11 +6,9 @@
 /*   By: cdapurif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:01:42 by cdapurif          #+#    #+#             */
-/*   Updated: 2020/03/02 10:33:39 by cdapurif         ###   ########.fr       */
+/*   Updated: 2020/03/03 16:43:28 by curtman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 #include <time.h>
 #include "get_next_line.h"
@@ -156,8 +154,10 @@ int		ft_replay(void)
 
 int		ft_loop(int myst_nbr)
 {
+	int		nbr_try;
 	int		input;
 
+	nbr_try = 1;
 	ft_putstr("Quel est le nombre ? ");
 	while ((input = ft_get_input()) != myst_nbr)
 	{
@@ -166,10 +166,13 @@ int		ft_loop(int myst_nbr)
 		else
 			ft_putstr("C'est moins !");
 		ft_putstr("\n\nQuel est le nombre ? ");
+		nbr_try++;
 	}
-	ft_putstr("Bravo, vous avez trouve le nombre mystere !!!\n\n");
+	ft_putstr("Bravo, vous avez trouve le nombre mystere en ");
+	ft_putnbr(nbr_try);
+	ft_putstr(" coups !\n\n");
 	ft_putstr("Voulez-vous refaire une partie ?\n(Pour modifier min et max"
-			" vous devez relancer le jeu :/) o/n : ");
+			" vous devez relancer le jeu ¯\\_(ツ)_/¯) o/n : ");
 	return (ft_replay());
 }
 
